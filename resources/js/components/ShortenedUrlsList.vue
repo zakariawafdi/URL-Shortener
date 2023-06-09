@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-for="(url, index) in shortenedUrls" :key="index">
-          <td><a :href="url.short_url" target="_blank" class="short-url">{{ url.short_url }}</a></td>
+          <td><a :href="currentHost + '/url/'+ url.short_url" target="_blank" class="short-url">{{ currentHost + '/url/'+ url.short_url }}</a></td>
           <td><a :href="url.long_url" target="_blank" class="short-url">{{ url.long_url }}</a></td>
           <td><span class="badge bg-primary click-count">{{ url.click_count }} clicks</span></td>
         </tr>
@@ -66,6 +66,7 @@
 export default {
   data() {
     return {
+      currentHost: '',
       shortenedUrls: []
     }
   }, methods: {
@@ -79,6 +80,7 @@ export default {
         });
     },
   },mounted(){
+    this.currentHost = this.currentHost = window.location.protocol +"//" + window.location.host;
     this.getShortenedUrls();
   }
 

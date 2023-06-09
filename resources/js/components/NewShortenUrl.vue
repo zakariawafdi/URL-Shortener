@@ -91,7 +91,7 @@ export default {
     }
   },
   mounted() {
-    this.currentHost = window.location.host;
+    this.currentHost = window.location.protocol +"//" + window.location.host;
   }
 }
 </script>

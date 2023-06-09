@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/shorten', [UrlShortenerController::class, 'shorten']);
 Route::get('/list', [UrlShortenerController::class, 'list']);
+Route::get('/stats', [UrlShortenerController::class, 'stats']);
+Route::get('/short-url-statistics/{shortUrl}', [UrlShortenerController::class, 'getShortUrlStatistics']);

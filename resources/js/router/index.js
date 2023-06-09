@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Layout from "../components/layout.vue";
 import NewShortenUrl from "../components/NewShortenUrl.vue";
 import ShortenedUrlsList from "../components/ShortenedUrlsList.vue";
-import Layout from "../components/layout.vue";
+import ShortUrlStats from "../components/ShortUrlStats.vue";
 
 const routes = [
     {
@@ -10,6 +11,7 @@ const routes = [
         children: [
             { path: "", component: NewShortenUrl },
             { path: "/list", component: ShortenedUrlsList },
+            { path: "/stats", component: ShortUrlStats },
         ],
     },
 ];

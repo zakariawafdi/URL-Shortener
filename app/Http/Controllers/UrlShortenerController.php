@@ -40,4 +40,26 @@ class UrlShortenerController extends Controller
         return redirect($shortenedUrl->long_url);
 
     }
+
+    public function stats()
+    {
+        $mostVisitedUrls = ShortenedUrl::orderBy('click_count', 'desc')->limit(10)->get();
+        $allShortened = ShortenedUrl::all();
+        return response(['mostVisitedUrls' => $mostVisitedUrls, 'allShortened' => $allShortened]);
+    }
+
+    public function getShortUrlStatistics($shortUrl)
+    {
+        $shortenedUrl = ShortenedUrl::where('short_url', $shortUrl)->firstOrFail();
+        $weekClicks = $shortenedUrl->getClickCountForPeriod('week');
+        $monthClicks = $shortenedUrl->getClickCountForPeriod('month');
+        $yearClicks = $shortenedUrl->getClickCountForPeriod('year');
+
+        $res = [ 
+            'weekClicks' => $weekClicks, 
+            'monthClicks' => $monthClicks,
+            'yearClicks' => $yearClicks
+        ];
+        return response($res);
+    }
 }

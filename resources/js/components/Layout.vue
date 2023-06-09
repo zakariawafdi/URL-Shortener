@@ -13,7 +13,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/">
+          <router-link to="/stats">
             Stats
           </router-link>
         </li>
